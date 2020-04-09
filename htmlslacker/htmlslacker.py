@@ -40,7 +40,20 @@ class HTMLSlacker(HTMLParser):
         :param attrs: we need to recover attributes of anchor
         :return:
         """
-        if tag == 'br' or tag == 'p':
+        if tag == 'br':
+            while True:
+                print("Found br tag")
+                if self.output[-1] == "*" or self.output[-1] == "_":
+                    print(f"Last element: #{self.output[-1]}")
+                    print("removing")
+                    self.output = self.output[:-1]
+                else:
+                    print(f"Last element: #{self.output[-1]}")
+                    print("breaking")
+                    break
+            print(self.output)
+            self.output += LINEBR
+        if tag == 'p':
             self.output += LINEBR
         if tag == 'b' or tag == 'strong':
             self.output += '*'
